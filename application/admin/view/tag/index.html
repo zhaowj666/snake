@@ -21,20 +21,29 @@
         </div>
         <div class="ibox-content">
             <div class="form-group clearfix col-sm-1">
-                {if authCheck('tag/tagadd')}
                 <a href="{:url('tag/tagadd')}"><button class="btn btn-outline btn-primary" type="button">添加标签</button></a>
-                {/if}
             </div>
 
-            <div class="example-wrap">
-                <div class="example">
-                    <table id="cusTable">
+            <div>
+                <div>
+                    <table class="table table-bordered table-hover">
                         <thead>
                         <th data-field="id">标签ID</th>
                         <th data-field="title">标签</th>
                         <th data-field="add_time">添加时间</th>
                         <th data-field="operate">操作</th>
                         </thead>
+                        {volist name='list' id='vo'}
+                            <tr>
+                                <td data-field="id">{$vo.id}</td>
+                                <td data-field="title">{$vo.title}</td>
+                                <td data-field="add_time">{$vo.create_time|date='Y-m-d',###}</td>
+                                <td data-field="operate">
+                                    <a href="javascript:;"><button class="btn btn-primary btn-sm">编辑</button></a>
+                                    <a href="javascript:;" onclick="tagDel({$vo.id})"><button class="btn btn-danger btn-sm">删除</button></a>
+                                </td>
+                            </tr>
+                        {/volist}
                     </table>
                 </div>
             </div>
@@ -93,14 +102,14 @@
 
     $(document).ready(function () {
         //调用函数，初始化表格
-        initTable();
+//        initTable();
 
         //当点击查询按钮的时候执行
-        $("#search").bind("click", initTable);
+//        $("#search").bind("click", initTable);
 
     });
 
-    function articleDel(id){
+    function tagDel(id){
         layer.confirm('确认删除此文章?', {icon: 3, title:'提示'}, function(index){
             //do something
             $.getJSON("{:url('articles/articleDel')}", {'id' : id}, function(res){
