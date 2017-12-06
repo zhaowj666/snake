@@ -110,15 +110,13 @@
     });
 
     function tagDel(id){
-        layer.confirm('确认删除此文章?', {icon: 3, title:'提示'}, function(index){
+        layer.confirm('确认删除此标签?', {icon: 3, title:'提示'}, function(index){
             //do something
-            $.getJSON("{:url('articles/articleDel')}", {'id' : id}, function(res){
-                if(1 == res.code){
+            $.getJSON("{:url('tag/tagDel')}", {'id' : id}, function(res){
+                if(false !== res.code){
                     layer.alert(res.msg, {title: '友情提示', icon: 1, closeBtn: 0}, function(){
-                        initTable();
+                        window.location.reload();
                     });
-                }else if(111 == res.code){
-                    window.location.reload();
                 }else{
                     layer.alert(res.msg, {title: '友情提示', icon: 2});
                 }
