@@ -11,6 +11,9 @@
     <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
     <link href="__JS__/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
     <link href="__JS__/layui/css/layui.css"rel="stylesheet">
+    <style type="text/css">
+        .tag{margin-left: 10px !important;line-height: 20px !important;}
+    </style>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -38,6 +41,14 @@
                             <label class="col-sm-3 control-label">关键词：</label>
                             <div class="input-group col-sm-7">
                                 <input id="keywords" class="form-control" name="keywords">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标签：</label>
+                            <div class="input-group col-sm-7">
+                                {volist name='list' id='v'}
+                                <input type="checkbox" class="tag" name="tag[]" value="{$v.title}">{$v.title}
+                                {/volist}
                             </div>
                         </div>
                         <div class="form-group">

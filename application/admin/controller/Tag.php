@@ -16,7 +16,6 @@ class Tag extends Base
 {
     //标签云
     public function index(){
-//        $tag = model('Tag');
         $tag = new TagModel();
         //查询条件
         $map['status'] = 1;
@@ -60,5 +59,12 @@ class Tag extends Base
         $tag = new TagModel();
         $rst = $tag->tagDel($id);
         return json(msg($rst['code'],$rst['data'],$rst['msg']));
+    }
+
+    /**
+     * 一键导出==》》》练习
+     */
+    public function Export(){
+
     }
 }

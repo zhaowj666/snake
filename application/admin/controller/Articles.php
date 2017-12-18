@@ -11,6 +11,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\ArticleModel;
+use app\admin\model\TagModel;
 
 class Articles extends Base
 {
@@ -60,7 +61,11 @@ class Articles extends Base
 
             return json(msg($flag['code'], $flag['data'], $flag['msg']));
         }
-
+        //标签数据
+        $tag = new TagModel();
+        $map['status'] = 1;
+        $list = $tag->getList($map);
+        $this->assign('list',$list);
         return $this->fetch();
     }
 

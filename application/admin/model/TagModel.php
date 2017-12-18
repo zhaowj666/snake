@@ -9,7 +9,7 @@ class TagModel extends Model{
     protected $table = 'snake_tag';
     //标签列表
     public function getList($map){
-        $list = $this->where($map)->limit(20)->select();
+        $list = $this->where($map)->limit(50)->select();
         return $list;
     }
     //获取一条数据
@@ -21,17 +21,18 @@ class TagModel extends Model{
     public function tagAdd($data){
         if(empty($data['id'])){
             if($this->insert($data) !== false){
-                return ['code'=>true,'data'=>'','msg'=>'添加成功'];
+                $return_data = ['code'=>true,'data'=>'','msg'=>'添加成功'];
             }else{
-                return ['code'=>false,'data'=>'','msg'=>'添加失败'];
+                $return_data = ['code'=>false,'data'=>'','msg'=>'添加失败'];
             }
         }else{
             if($this->update($data) !== false){
-                return ['code'=>true,'data'=>'','msg'=>'编辑成功'];
+                $return_data = ['code'=>true,'data'=>'','msg'=>'编辑成功'];
             }else{
-                return ['code'=>false,'data'=>'','msg'=>'编辑失败'];
+                $return_data = ['code'=>false,'data'=>'','msg'=>'编辑失败'];
             }
         }
+        return $return_data;
     }
 
     //删除标签
