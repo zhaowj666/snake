@@ -52,7 +52,6 @@ class Articles extends Base
     {
         if(request()->isPost()){
             $param = input('post.');
-
             unset($param['file']);
             $param['add_time'] = date('Y-m-d H:i:s');
 

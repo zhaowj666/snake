@@ -44,14 +44,29 @@ class ArticleModel extends Model
     public function addArticle($param)
     {
         try{
+            $this->startTrans();
             $result = $this->validate('ArticleValidate')->save($param);
             if(false === $result){
+                $this->rollback();
                 // 验证失败 输出错误信息
                 return msg(-1, '', $this->getError());
-            }else{
-
-                return msg(1, url('articles/index'), '添加文章成功');
             }
+            $new_data = [];
+            $data = [];
+            foreach($param['tag'] as $v){
+                $new_data['article_id'] = $result;
+                $new_data['tag_id'] = $v;
+                $data[] = $new_data;
+            }
+            $art_tag = new ArtTagModel();
+            $bool = $art_tag->saveAll($data);
+            if(false === $bool){
+                $this->rollback();
+                // 验证失败 输出错误信息
+                return msg(-1, '', $this->getError());
+            }
+            $this->commit();
+            return msg(1, url('articles/index'), '添加文章成功');
         }catch (\Exception $e){
             return msg(-2, '', $e->getMessage());
         }
