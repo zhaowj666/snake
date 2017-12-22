@@ -2,6 +2,7 @@
 namespace app\home\model;
 
 
+use think\Db;
 use think\Model;
 
 class ArticleModel extends Model
@@ -14,7 +15,17 @@ class ArticleModel extends Model
      */
     public function getOne($id)
     {
-        return $this->find($id);
+        //文章详情
+        $info = $this->find($id);
+        //文章相关标签ID
+        $tag_ids = Db::table('snake_art_tag')
+            ->where('article_id', '=', $id)->select();
+        $tag_ids = array_column($tag_ids, 'tag_id');
+        //标签信息
+        $tag = new TagModel();
+        $where['id'] = ['in', $tag_ids];
+        $info['tag'] = $tag->getList($where);
+        return $info;
     }
 
     /**
