@@ -54,7 +54,7 @@ class ArticleModel extends Model
             $new_data = [];
             $data = [];
             foreach($param['tag'] as $v){
-                $new_data['article_id'] = $result;
+                $new_data['article_id'] = $this->getLastInsID();
                 $new_data['tag_id'] = $v;
                 $data[] = $new_data;
             }
