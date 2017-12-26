@@ -42,6 +42,18 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">标签：</label>
+                            <div class="input-group col-sm-7">
+                                {volist name='list' id='v'}
+                                    {if condition="$v.checked eq 1"}
+                                        <input type="checkbox" class="tag" checked name="tag[]" value="{$v.id}">{$v.title}
+                                    {else/}
+                                        <input type="checkbox" class="tag" name="tag[]" value="{$v.id}">{$v.title}
+                                    {/if}
+                                {/volist}
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">缩略图：</label>
                             <input name="thumbnail" id="thumbnail" type="hidden" value="{$article['thumbnail']}"/>
                             <div class="form-inline">

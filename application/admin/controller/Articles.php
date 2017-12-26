@@ -80,10 +80,10 @@ class Articles extends Base
             return json(msg($flag['code'], $flag['data'], $flag['msg']));
         }
 
+        //文章数据
         $id = input('param.id');
-        $this->assign([
-            'article' => $article->getOneArticle($id)
-        ]);
+        $info = $article->getOneArticle($id);
+        $this->assign($info);
         return $this->fetch();
     }
 

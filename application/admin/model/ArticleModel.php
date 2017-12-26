@@ -10,6 +10,7 @@
 // +----------------------------------------------------------------------
 namespace app\admin\model;
 
+use think\Db;
 use think\Model;
 
 class ArticleModel extends Model
@@ -100,7 +101,27 @@ class ArticleModel extends Model
      */
     public function getOneArticle($id)
     {
-        return $this->where('id', $id)->find();
+        $info['article'] = $this->where('id', $id)->find();
+        //标签数据
+        $tag = new TagModel();
+        $map['status'] = 1;
+        $list = $tag->getList($map);
+        //查询关联标签
+        $tag_ids = Db::table('snake_art_tag')->where("article_id",'=',$id)->select();
+        if(!empty($tag_ids)){
+            $tag_ids = array_column($tag_ids,'tag_id');
+            foreach($list as &$v){
+                foreach($tag_ids as $tag_id){
+                    if($v['id'] == $tag_id){
+                        $v['checked'] = 1;
+                    }else{
+                        $v['checked'] = 0;
+                    }
+                }
+            }
+        }
+        $info['list'] = $list;
+        return $info;
     }
 
     /**
