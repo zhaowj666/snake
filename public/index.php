@@ -18,6 +18,7 @@ if(!file_exists(__DIR__ . '/../data/install.lock')){
 define('APP_PATH', __DIR__ . '/../application/');
 // 定义应用缓存目录
 define('RUNTIME_PATH', __DIR__ . '/../runtime/');
+define('EXTEND_PATH', __DIR__ . '/../extend/');
 // 开启调试模式
 define('APP_DEBUG', true);
 // 加载框架引导文件
