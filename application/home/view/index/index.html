@@ -23,55 +23,13 @@
                 </div>
                 {/if}
                 {/volist}
+                <div class="paging">
+                    <a href="#" class="older">page</i></a>
+                </div>
             </div>
-            <div class="paging">
-                <a href="#" class="older">page</i></a>
-            </div>
+            {include file="common/MENU_RIGHT" /}
         </div>
-        <div class="col-md-4 blog-aside">
 
-            <div class="aside-widget">
-                <header>
-                    <h3>Hot Article</h3>
-                </header>
-                <div class="body">
-                    <ul class="clean-list">
-                        {volist name="hotArticles" id="hot"}
-                        <li><a href="{:url('Article/detail',['id'=>$hot['id']])}">{$hot.title}</a></li>
-                        {/volist}
-                    </ul>
-                </div>
-            </div>
-
-            <div class="aside-widget">
-                <header>
-                    <h3>Links</h3>
-                </header>
-                <div class="body">
-                    <ul class="clean-list">
-                        <li><a href="http://store.dreameb.com" target="_blank">鲜达洋</a></li>
-                        <li><a href="http://apizza.cc/projects" target="_blank">Apizza</a></li>
-                        <li><a href="http://www.liaoxuefeng.com" target="_blank">廖雪峰的官方网站</a></li>
-                        <li><a href="" target="_blank">Clean - Responsive HTML5 Template</a></li>
-                        <li><a href="" target="_blank">Responsive Pricing Table</a></li>
-                        <li><a href="" target="_blank">Yellow HTML5 Template</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="aside-widget">
-                <header>
-                    <h3>Tags</h3>
-                </header>
-                <div class="body clearfix">
-                    <ul class="tags">
-                        {volist name='tagList' id="tag"}
-                        <li><a href="javascript:;">{$tag.title}</a></li>
-                        {/volist}
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 {/block}

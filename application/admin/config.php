@@ -17,6 +17,7 @@ return [
         '__JS__'     => '/static/admin/js',
         '__IMG__' => '/static/admin/images',
         '__MUSIC__' => '/static/music',
+        '__QINIU__' => '/extend/qiniu',
     ),
 
     // 管理员状态
