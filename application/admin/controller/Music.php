@@ -49,14 +49,7 @@ class Music extends Base{
             $id = input('post.id');
             $data          = input('param.');
             if(empty($id)){
-//                dump($_FILES);
-//                dump($_FILES['music_path']['tmp_name']);
-                require EXTEND_PATH.'/qiniu/autoload.php';
-                $uploadMgr = new UploadManager();
-                $token = $this->getToken();
-                list($ret, $err) = $uploadMgr->putFile($token, null, $_FILES['music_path']['tmp_name']);
-                dump($ret);
-                dump($err);
+                dump($data);
                 exit;
                 $data['status']         = 1;
                 $data['create_time']    = time();
