@@ -162,7 +162,7 @@ Styles for the navigation, both mobile and desktop
 
 .clean-nav .nav-pills > li > a:hover,
 .clean-nav .nav-pills > li > a:focus {
-  color: red;
+  color: #1d9d74;
 }
 
 .clean-nav .nav-pills > li.dropdown.open.active > a:hover,

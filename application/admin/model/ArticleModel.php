@@ -80,16 +80,40 @@ class ArticleModel extends Model
     public function editArticle($param)
     {
         try{
-
+            $this->startTrans();
+            //文章编辑
             $result = $this->validate('ArticleValidate')->save($param, ['id' => $param['id']]);
-
             if(false === $result){
+                $this->rollback();
                 // 验证失败 输出错误信息
                 return msg(-1, '', $this->getError());
-            }else{
-
-                return msg(1, url('articles/index'), '编辑文章成功');
             }
+            //关联标签编辑
+            if(!empty($param['tag'])){
+                $art_tag = new ArtTagModel();
+                //删除旧标签
+                $rst = $art_tag->where("article_id","=",$param['id'])->delete();
+                if(false === $rst){
+                    $this->rollback();
+                    // 验证失败 输出错误信息
+                    return msg(-1, '', $this->getError());
+                }
+                $new_data = [];
+                $data = [];
+                foreach($param['tag'] as $v){
+                    $new_data['article_id'] = $param['id'];
+                    $new_data['tag_id'] = $v;
+                    $data[] = $new_data;
+                }
+                $bool = $art_tag->saveAll($data);
+                if(false === $bool){
+                    $this->rollback();
+                    // 验证失败 输出错误信息
+                    return msg(-1, '', $this->getError());
+                }
+            }
+            $this->commit();
+            return msg(1, url('articles/index'), '编辑文章成功');
         }catch(\Exception $e){
             return msg(-2, '', $e->getMessage());
         }
@@ -114,8 +138,6 @@ class ArticleModel extends Model
                 foreach($tag_ids as $tag_id){
                     if($v['id'] == $tag_id){
                         $v['checked'] = 1;
-                    }else{
-                        $v['checked'] = 0;
                     }
                 }
             }

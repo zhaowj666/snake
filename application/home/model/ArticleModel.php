@@ -17,6 +17,8 @@ class ArticleModel extends Model
     {
         //文章详情
         $info = $this->find($id);
+        //增加浏览量
+        $this->where("id",'=',$id)->setInc('browse',1);
         //文章相关标签ID
         $tag_ids = Db::table('snake_art_tag')
             ->where('article_id', '=', $id)->select();

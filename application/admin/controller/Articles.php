@@ -72,7 +72,6 @@ class Articles extends Base
     {
         $article = new ArticleModel();
         if(request()->isPost()){
-
             $param = input('post.');
             unset($param['file']);
             $flag = $article->editArticle($param);

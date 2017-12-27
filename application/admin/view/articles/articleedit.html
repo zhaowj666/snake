@@ -45,11 +45,13 @@
                             <label class="col-sm-3 control-label">标签：</label>
                             <div class="input-group col-sm-7">
                                 {volist name='list' id='v'}
-                                    {if condition="$v.checked eq 1"}
-                                        <input type="checkbox" class="tag" checked name="tag[]" value="{$v.id}">{$v.title}
+                                    {notempty name="v.checked"}
+                                        {if condition="$v.checked eq 1"}
+                                            <input type="checkbox" class="tag" checked name="tag[]" value="{$v.id}">{$v.title}
+                                        {/if}
                                     {else/}
                                         <input type="checkbox" class="tag" name="tag[]" value="{$v.id}">{$v.title}
-                                    {/if}
+                                    {/notempty}
                                 {/volist}
                             </div>
                         </div>
