@@ -44,7 +44,7 @@
                                 <td data-field="title">{$vo.title}</td>
                                 <td data-field="add_time">{$vo.create_time|date='Y-m-d',###}</td>
                                 <td data-field="operate">
-                                    <a href="javascript:;"><button class="btn btn-primary btn-sm">编辑</button></a>
+                                    <a href="{:url('tag/tagAdd',['id'=>$vo['id']])}"><button class="btn btn-primary btn-sm">编辑</button></a>
                                     <a href="javascript:;" onclick="tagDel({$vo.id})"><button class="btn btn-danger btn-sm">删除</button></a>
                                 </td>
                             </tr>

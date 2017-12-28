@@ -238,23 +238,12 @@
 <script src="__MUSIC__/js/music.js"></script>
 <script>
     window.onload = function () {
+        var music = {$music_list};
         MC.music({
             hasAjax: false,
             right: '1%',
             top: '14%',
-            source:                 [
-                {
-                    name:'We Dont Talk Anymore',
-                    singer:'Charlie Puth',
-                    url:'http://jq22.qiniudn.com/2_01.mp3',
-                    img_url:'http://www.daiwei.org/index/music/musicImg/%E5%91%A8%E6%9D%B0%E4%BC%A6-%E5%91%8A%E7%99%BD%E6%B0%94%E7%90%83.jpg',
-                },{
-                    name:'Fade',
-                    singer:'Alan Walker',
-                    url:'http://jq22.qiniudn.com/m_02.mp3',
-                    img_url:'http://www.daiwei.org/index/music/musicImg/Faded.jpg',
-                }
-            ],
+            source: music,
             musicChanged: function (ret) {
                 var data = ret.data;
                 var index = ret.index;

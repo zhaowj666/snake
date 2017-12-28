@@ -44,31 +44,40 @@ class Music extends Base{
      * 添加编辑音乐
      */
     public function musicAdd(){
-        $tag = new MusicModel();
+        $music = new MusicModel();
         if(Request::instance()->isPost()){  //post请求
             $id = input('post.id');
             $data          = input('param.');
             if(empty($id)){
-                dump($data);
-                exit;
+                unset($data['file']);
                 $data['status']         = 1;
                 $data['create_time']    = time();
             }else{
                 $data['id'] = $id;
             }
-            $rst = $tag->musicAdd($data);
+            $rst = $music->musicAdd($data);
             return json(msg($rst['code'],$rst['data'],$rst['msg']));
 
         }elseif(Request::instance()->isGet()){  //get请求
-            $id = input('get.id');
+            $id = input('param.id');
             if($id){
-                $info = $tag->getOne($id);
-                $this->assign($info);
+                $info = $music->getOne($id);
+                $this->assign('info',$info);
             }
             //上传token
             $token = $this->getToken();
             $this->assign('token',$token);
             return view();
         }
+    }
+
+    /**
+     * 删除音乐
+     */
+    public function musicDel(){
+        $id = input('get.id');
+        $music = new MusicModel();
+        $rst = $music->musicDel($id);
+        return json(msg($rst['code'],$rst['data'],$rst['msg']));
     }
 }

@@ -12,33 +12,8 @@
     <link href="__JS__/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
     <link href="__JS__/layui/css/layui.css"rel="stylesheet">
     <style type="text/css">
-        #upload-back-box{width:100%;
-            height:100%;
-            background-color:#000;
-            position:absolute;
-            top:0;
-            left:0;
-            z-index:2;
-            -moz-opacity:0.3;
-            opacity:0.3;
-            /*兼容IE8及以下版本浏览器*/
-            filter: alpha(opacity=30);
-            display:block;}
+        .edit-music-img{width:40px;height:40px;}
 
-        #upload-box {
-            width: 300px;
-            height: 100px;
-            background-color: #FFF;
-            margin: auto;
-            position: absolute;
-            z-index: 105;
-            top: -20%;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            opacity:1;
-            display: block;
-        }
     </style>
 </head>
 <body class="gray-bg">
@@ -54,18 +29,18 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">音乐名称：</label>
                             <div class="input-group col-sm-7">
-                                <input id="title" type="text" class="form-control" name="title" required="" aria-required="true">
+                                <input id="title" type="text" class="form-control" name="title" value="{$info.title|default=''}" required="" aria-required="true">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">歌手：</label>
                             <div class="input-group col-sm-7">
-                                <input id="singer" type="text" class="form-control" name="singer" required="" aria-required="true">
+                                <input id="singer" type="text" class="form-control" name="singer" value="{$info.singer|default=''}" required="" aria-required="true">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">缩略图：</label>
-                            <input name="img_path" id="img_path" type="hidden"/>
+                            <input name="img_path" id="img_path" type="hidden" value="{$info.img_path|default=''}"/>
                             <div class="form-inline">
                                 <div class="input-group col-sm-2">
                                     <button type="button" class="layui-btn" id="test1">
@@ -73,14 +48,16 @@
                                     </button>
                                 </div>
                                 <div class="input-group col-sm-3">
-                                    <div id="sm"></div>
+                                    <div id="sm">
+                                        {notempty name="info.img_path"}<img class="edit-music-img" src="{$info.img_path}"/>{/notempty}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">上传音乐：</label>
-                            <button id="pickfiles">选择文件</button>
-                            <input type="hidden" id="music_path" name="music_path" value=""/>
+                            <button id="pickfiles">选择文件</button> <a id="music_play" target="_blank" href="{$info.music_path|default=''}">{$info.title|default=''}</a>
+                            <input type="hidden" id="music_path" name="music_path" value="{$info.music_path|default=''}"/>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-8">
@@ -88,6 +65,7 @@
                                 <button class="btn btn-primary" type="submit">确认提交</button>
                             </div>
                         </div>
+                        <input type="hidden" name="id" value="{$info.id|default=''}"/>
                     </form>
                 </div>
             </div>
@@ -214,6 +192,9 @@
                      var res = $.parseJSON(info.response);
                      var sourceLink = 'p1lw004fl.bkt.clouddn.com/' + res.key; //获取上传成功后的文件的Url
                     $('#music_path').val(sourceLink);
+                    $('#music_play').attr('href','http://'+sourceLink);
+                    $('#music_play').text($('#title').val());
+                    layer.msg('上传成功');
                 },
                 'Error': function(up, err, errTip) {
                     //上传出错时,处理相关的事情

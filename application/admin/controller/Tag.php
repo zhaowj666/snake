@@ -42,10 +42,10 @@ class Tag extends Base
             return json(msg($rst['code'],$rst['data'],$rst['msg']));
 
         }elseif(Request::instance()->isGet()){  //get请求
-            $id = input('get.id');
+            $id = input('param.id');
             if($id){
                 $info = $tag->getOne($id);
-                $this->assign($info);
+                $this->assign('info',$info);
             }
             return view();
         }

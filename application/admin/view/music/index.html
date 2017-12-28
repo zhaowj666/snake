@@ -12,7 +12,7 @@
     <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
     <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
     <style type="text/css">
-
+        .music_img{height: 50px}
     </style>
 </head>
 <body class="gray-bg">
@@ -33,19 +33,21 @@
                         <thead>
                         <th data-field="id">Music ID</th>
                         <th data-field="title">名称</th>
-                        <th data-field="author">歌手</th>
+                        <th data-field="singer">歌手</th>
                         <th data-field="img">图片</th>
+                        <th data-field="create_time">创建时间</th>
                         <th data-field="operate">操作</th>
                         </thead>
                         {volist name='list' id='vo'}
                             <tr>
                                 <td data-field="id">{$vo.id}</td>
                                 <td data-field="title">{$vo.title}</td>
-                                <td data-field="title">{$vo.title}</td>
-                                <td data-field="add_time">{$vo.create_time|date='Y-m-d',###}</td>
+                                <td data-field="singer">{$vo.singer}</td>
+                                <td data-field="img_path"><img class="music_img" src="{$vo.img_path}"/></td>
+                                <td data-field="create_time">{$vo.create_time|date='Y-m-d H:i:s',###}</td>
                                 <td data-field="operate">
-                                    <a href="javascript:;"><button class="btn btn-primary btn-sm">编辑</button></a>
-                                    <a href="javascript:;" onclick="tagDel({$vo.id})"><button class="btn btn-danger btn-sm">删除</button></a>
+                                    <a href="{:url('music/musicAdd',['id'=>$vo['id']])}"><button class="btn btn-primary btn-sm">编辑</button></a>
+                                    <a href="javascript:;" onclick="musicDel({$vo.id})"><button class="btn btn-danger btn-sm">删除</button></a>
                                 </td>
                             </tr>
                         {/volist}
@@ -114,10 +116,10 @@
 
     });
 
-    function tagDel(id){
-        layer.confirm('确认删除此标签?', {icon: 3, title:'提示'}, function(index){
+    function musicDel(id){
+        layer.confirm('确认删除此音乐?', {icon: 3, title:'提示'}, function(index){
             //do something
-            $.getJSON("{:url('tag/tagDel')}", {'id' : id}, function(res){
+            $.getJSON("{:url('music/musicDel')}", {'id' : id}, function(res){
                 if(false !== res.code){
                     layer.alert(res.msg, {title: '友情提示', icon: 1, closeBtn: 0}, function(){
                         window.location.reload();
