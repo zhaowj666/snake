@@ -1,0 +1,41 @@
+{extend name='common/common'/}
+{block name='css'}
+    <style type="text/css">
+        .list-img{margin: 10px 0}
+        h3 a{color: #0a6aa1;font-weight: bold}
+        span{margin-right: 20px;color: #b94a48}
+        h3 a:hover{color:red;}
+        /*h3 a:visited{color:#b94a48;}*/
+    </style>
+{/block}
+<!-- 主内容区 -->
+{block name='content'}
+<div class="widewrapper main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 blog-main">
+                {volist name="list" id="art" key='k'}
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 index-art list-img">
+                        <img style="width: 100%;" src="{$art.thumbnail}" alt="{$art.keywords}">
+                    </div>
+                    <div style="float: left" class="col-md-9 col-sm-9">
+                        <h3><a class="title" href="{:url('Article/detail',['id'=>$art['id']])}">{$art.title}</a></h3>
+                        <p>{$art.description}</p>
+                        <span>{$art.add_time}</span><span>阅读：{$art.browse} </span>
+                    </div>
+                </div>
+                {/volist}
+                <div class="paging">
+                    <a href="#" class="older">page</i></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{/block}
+{block name='js'}
+
+{/block}
