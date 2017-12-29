@@ -17,6 +17,8 @@ class ArticleModel extends Model
     {
         //文章详情
         $info = $this->find($id);
+        //关键字处理
+        $info['kwd'] = explode(',',$info['keywords']);
         //增加浏览量
         $this->where("id",'=',$id)->setInc('browse',1);
         //文章相关标签ID
@@ -26,15 +28,15 @@ class ArticleModel extends Model
         //标签信息
         $tag = new TagModel();
         $where['id'] = ['in', $tag_ids];
-        $info['tag'] = $tag->getList($where);
+        $info['art_tags'] = $tag->getList($where);
         return $info;
     }
 
     /**
      * 查询列表
      */
-    public function getList($where, $start_page, $num, $field = '*', $order = 'id desc')
+    public function getList($where, $page_num, $field = '*', $order = 'id desc')
     {
-        return $this->where($where)->field($field)->order($order)->limit($start_page, $num)->select();
+        return $this->where($where)->field($field)->order($order)->paginate($page_num);
     }
 }

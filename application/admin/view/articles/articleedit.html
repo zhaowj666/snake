@@ -11,6 +11,11 @@
     <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
     <link href="__JS__/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
     <link href="__JS__/layui/css/layui.css"rel="stylesheet">
+    <style type="text/css">
+        .tag{margin-left: 10px !important;line-height: 20px !important;}
+        .radio-input{line-height: 35px;}
+        .radio-input input{width: 20px}
+    </style>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -36,6 +41,13 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">分类：</label>
+                            <div class="radio-input">
+                                <label><input type="radio" {eq name="article.type" value="1"}checked{/eq} class="" name="type" value="1">编程</label>
+                                <label><input type="radio" {eq name="article.type" value="2"}checked{/eq} class="" name="type" value="2">休闲时刻</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">关键词：</label>
                             <div class="input-group col-sm-7">
                                 <input id="keywords" class="form-control" name="keywords" value="{$article['keywords']}">
@@ -47,10 +59,10 @@
                                 {volist name='list' id='v'}
                                     {notempty name="v.checked"}
                                         {if condition="$v.checked eq 1"}
-                                            <input type="checkbox" class="tag" checked name="tag[]" value="{$v.id}">{$v.title}
+                                            <label><input type="checkbox" class="tag" checked name="tag[]" value="{$v.id}">{$v.title}</label>
                                         {/if}
                                     {else/}
-                                        <input type="checkbox" class="tag" name="tag[]" value="{$v.id}">{$v.title}
+                                        <label><input type="checkbox" class="tag" name="tag[]" value="{$v.id}">{$v.title}</label>
                                     {/notempty}
                                 {/volist}
                             </div>

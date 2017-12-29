@@ -12,10 +12,10 @@ class Index extends Base
         $article = new ArticleModel();
         //热门文章
         $where['status']    = 1;
-        $hotArticles = $article->getList($where,0,6,'id,title,keywords','browse desc,id desc');
+        $hotArticles = $article->getList($where,6,'id,title,keywords','browse desc,id desc');
         //主页文章
-        $where['type']    = 1;
-        $articleList = $article->getList($where,0,8,'id,title,thumbnail,keywords');
+//        $where['type']    = 1;
+        $articleList = $article->getList($where,8,'id,title,thumbnail,keywords');
         //标签
         $tag = new TagModel();
         $tagList = $tag->getList();

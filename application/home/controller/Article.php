@@ -3,6 +3,7 @@ namespace app\home\controller;
 
 use app\home\model\ArticleModel;
 use app\home\Model\TagModel;
+use think\Db;
 
 class Article extends Base
 {
@@ -14,17 +15,24 @@ class Article extends Base
             'type'    => 1,
         ];
         //查询关键字
-        if (!empty($param['searchText'])) {
-            $where['title'] = ['like', '%' . $param['searchText'] . '%'];
+        if (!empty($param['kwd'])) {
+            $where['title'] = ['like', '%' . $param['kwd'] . '%'];
         }
         //标签文章
         if (!empty($param['tag'])) {
-
+            //标签相关文章ID
+            $art_ids = Db::table('snake_art_tag')
+                ->where('tag_id', '=', $param['tag'])->select();
+            $art_ids = array_column($art_ids, 'article_id');
+            $where['id'] = ['in',$art_ids];
         }
         $article = new ArticleModel();
-        $selectResult = $article->getList($where,0,10);
+        $selectResult = $article->getList($where,10);
+        // 获取分页显示
+        $page = $selectResult->render();
         $this->assign('meta_title', '文章列表');
         $this->assign('list', $selectResult);
+        $this->assign('page', $page);
         return $this->fetch();
     }
 
@@ -34,7 +42,7 @@ class Article extends Base
         $info = $article->getOne($id);
         //热门文章
         $where['status']    = 1;
-        $hotArticles = $article->getList($where,0,10,'id,title,keywords');
+        $hotArticles = $article->getList($where,10,'id,title,keywords');
         //标签
         $tag = new TagModel();
         $tagList = $tag->getList();

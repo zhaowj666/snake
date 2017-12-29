@@ -22,12 +22,12 @@
                     <div style="float: left" class="col-md-9 col-sm-9">
                         <h3><a class="title" href="{:url('Article/detail',['id'=>$art['id']])}">{$art.title}</a></h3>
                         <p>{$art.description}</p>
-                        <span>{$art.add_time}</span><span>阅读：{$art.browse} </span>
+                        <span>{$art.keywords}</span><span>{$art.add_time}</span><span>阅读：{$art.browse} </span>
                     </div>
                 </div>
                 {/volist}
                 <div class="paging">
-                    <a href="#" class="older">page</i></a>
+                    {$page}
                 </div>
             </div>
 

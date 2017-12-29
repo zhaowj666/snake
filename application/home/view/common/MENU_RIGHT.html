@@ -36,7 +36,7 @@
         <div class="body clearfix">
             <ul class="tags">
                 {volist name='tagList' id="tag"}
-                <li><a href="javascript:;">{$tag.title}</a></li>
+                <li><a href="{:url('Article/index',['tag'=>$tag['id']])}">{$tag.title}</a></li>
                 {/volist}
             </ul>
         </div>

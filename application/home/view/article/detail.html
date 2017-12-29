@@ -1,4 +1,20 @@
 {extend name='common/common'/}
+{block name='css'}
+<style>
+    .kwd-p{border-top: 1px solid red;padding-top: 10px;}
+    .tag-p{height: 40px;}
+    .tag-p font{line-height: 40px;}
+    .tag-sty{  padding: 3px 15px;
+        display: inline-block;
+        margin: 5px;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 25px;
+        float: left;
+        background-color: lavenderblush;
+    }
+    .kwd-font{margin-right: 10px;color: lightseagreen}
+</style>
+{/block}
 <!-- 主内容区 -->
 {block name='content'}
 <div class="widewrapper main">
@@ -21,6 +37,8 @@
                         <p style="word-wrap:break-word">
                            {$info.content}
                         </p>
+                        <p class="kwd-p">关键字：{volist name='info.kwd' id='kwd_v'}<font class="kwd-font">{$kwd_v}</font>{/volist}</p>
+                        <p class="tag-p"><font style="float: left">标签：</font>{volist name='info.art_tags' id='art_tag'}<a class="tag-sty" href="{:url('Article/index',['tag'=>$art_tag['id']])}">{$art_tag.title}</a>{/volist}</p>
                     </div>
                 </article>
 
