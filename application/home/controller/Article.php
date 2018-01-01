@@ -12,8 +12,8 @@ class Article extends Base
         $param = input('param.');
         $where = [
             'status'    => 1,
-            'type'    => 1,
         ];
+        $where['type'] = $param['type'];
         //查询关键字
         if (!empty($param['kwd'])) {
             $where['title'] = ['like', '%' . $param['kwd'] . '%'];

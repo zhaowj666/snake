@@ -2,7 +2,7 @@
 namespace app\home\controller;
 
 use app\home\model\ArticleModel;
-use app\home\Model\TagModel;
+use app\home\model\TagModel;
 use think\Controller;
 
 class Index extends Base
