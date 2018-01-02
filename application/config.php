@@ -21,7 +21,10 @@ return [
     'log' => [
         'type' => 'test',
     ],
-
+    'url_domain_deploy' =>  true,
+    'url_domain_rules'=>[
+        'blog.zhaowj.cc'=>'home'
+    ],
     'app_debug' => true,
 
     // +----------------------------------------------------------------------

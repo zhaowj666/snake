@@ -13,7 +13,7 @@ class Article extends Base
         $where = [
             'status'    => 1,
         ];
-        $where['type'] = $param['type'];
+        !empty($param['type']) && ($where['type'] = $param['type']);
         //查询关键字
         if (!empty($param['kwd'])) {
             $where['title'] = ['like', '%' . $param['kwd'] . '%'];

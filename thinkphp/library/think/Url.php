@@ -55,7 +55,6 @@ class Url
                 list($url, $domain) = explode('@', $url, 2);
             }
         }
-
         // 解析参数
         if (is_string($vars)) {
             // aaa=1&bbb=2 转换成数组
@@ -112,7 +111,6 @@ class Url
                 $vars = array_merge($params, $vars);
             }
         }
-
         // 检测URL绑定
         if (!self::$bindCheck) {
             $type = Route::getBind('type');
@@ -126,7 +124,6 @@ class Url
         // 还原URL分隔符
         $depr = Config::get('pathinfo_depr');
         $url  = str_replace('/', $depr, $url);
-
         // URL后缀
         $suffix = in_array($url, ['/', '']) ? '' : self::parseSuffix($suffix);
         // 锚点
@@ -155,6 +152,7 @@ class Url
         }
         // 检测域名
         $domain = self::parseDomain($url, $domain);
+
         // URL组装
         $url = $domain . rtrim(self::$root ?: Request::instance()->root(), '/') . '/' . ltrim($url, '/');
 
