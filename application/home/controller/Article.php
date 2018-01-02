@@ -49,6 +49,10 @@ class Article extends Base
 
         $this->assign(['info'=>$info,'hotArticles'=>$hotArticles,'tagList'=>$tagList]);
         $this->assign('meta_title', $info['title']);
+        //关键字 seo
+        $this->assign('keywords_title', $info['keywords']);
+        //简介 seo
+        $this->assign('description', $info['description']);
         return $this->fetch();
     }
 }

@@ -3,10 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>{$meta_title}-river的博客</title>
-    <meta name="description" content="{$description|default='php,linux,mysql等工作中的经验和一些学习笔记'}">
+    <meta name="description" content="php,linux,mysql等工作中的经验和一些学习笔记">
     <!--强制页面在当前窗口以独立页面显示。用来防止别人在框架里调用你的页面-->
     <meta HTTP-EQUIV="Window-target" CONTENT="_top">
-    <meta name ="keywords" content="{$keywords_title|default='linux,php,学习,media player'}">
+    <meta name ="keywords" content="linux,php,学习,media player">
     <meta name="author" content="river.m">
     <meta name="robots" content="all">
     <meta name="viewport" content="width=device-width">
@@ -49,13 +49,13 @@
                     <ul class="nav nav-pills navbar-nav">
 
                         <li>
-                            <a href="{:url('Index/index')}">Home</a>
+                            <a href="{:url('home/Index/index')}">Home</a>
                         </li>
                         <li>
-                            <a href="{:url('Article/index',['type'=>1])}">Good Good Study</a>
+                            <a href="{:url('home/Article/index',['type'=>1])}">Good Good Study</a>
                         </li>
                         <li>
-                            <a href="{:url('Article/index',['type'=>2])}">休闲时刻</a>
+                            <a href="{:url('home/Article/index',['type'=>2])}">休闲时刻</a>
                         </li>
                         <li>
                             <a href="javascript:;">Contact</a>
