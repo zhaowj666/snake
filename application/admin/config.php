@@ -12,14 +12,14 @@
 return [
 
     // 模板参数替换
-    'view_replace_str'       => array(
-        '__CSS__'    => '/static/admin/css',
-        '__JS__'     => '/static/admin/js',
-        '__IMG__' => '/static/admin/images',
-        '__MUSIC__' => '/static/music',
-        '__QINIU__' => '/extend/qiniu',
-        '__QINIU_JS__' => '/static/qiniu_js',
-        '__UPLOAD__' =>'',
+    'view_replace_str'      => array(
+        '__CSS__'           => BLOG.'/static/admin/css',
+        '__JS__'            => BLOG.'/static/admin/js',
+        '__IMG__'           => BLOG.'/static/admin/images',
+        '__MUSIC__'         => BLOG.'/static/music',
+        '__QINIU__'         => BLOG.'/extend/qiniu',
+        '__QINIU_JS__'      => BLOG.'/static/qiniu_js',
+        '__UPLOAD__'        => BLOG,
     ),
 
     // 管理员状态

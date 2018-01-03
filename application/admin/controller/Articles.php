@@ -34,7 +34,7 @@ class Articles extends Base
             $selectResult = $article->getArticlesByWhere($where, $offset, $limit);
 
             foreach($selectResult as $key=>$vo){
-                $selectResult[$key]['thumbnail'] = '<img src="' . $vo['thumbnail'] . '" width="40px" height="40px">';
+                $selectResult[$key]['thumbnail'] = '<img src="' . BLOG . $vo['thumbnail'] . '" width="40px" height="40px">';
                 $selectResult[$key]['operate'] = showOperate($this->makeButton($vo['id']));
             }
 
@@ -99,10 +99,9 @@ class Articles extends Base
     public function uploadImg()
     {
         if(request()->isAjax()){
-
             $file = request()->file('file');
             // 移动到框架应用根目录/public/uploads/ 目录下
-            $info = $file->move(ROOT_PATH . 'public' . DS . 'upload');
+            $info = $file->move(ROOT_PATH .DS . 'upload');
             if($info){
                 $src =  '/upload' . '/' . date('Ymd') . '/' . $info->getFilename();
                 return json(msg(0, ['src' => $src], ''));

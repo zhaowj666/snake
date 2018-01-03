@@ -13,7 +13,9 @@
 if(!file_exists(__DIR__ . '/../data/install.lock')){
     define('BIND_MODULE', 'install');
 }
-
+// 应用根目录
+define('ROOT_PATH',__DIR__ . '/../public/');
+define('BLOG','/blog/public');
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
 // 定义应用缓存目录

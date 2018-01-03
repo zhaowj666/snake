@@ -13,8 +13,9 @@ return [
 
     // 模板参数替换
     'view_replace_str'       => array(
-        '__CSS__'    => '/static/home/css',
-        '__JS__'     => '/static/home/js',
-        '__IMG__' => '/static/home/img',
+        '__CSS__'       => BLOG.'/static/home/css',
+        '__JS__'        => BLOG.'/static/home/js',
+        '__IMG__'       => BLOG.'/static/home/img',
+        '__UPLOAD__'        => BLOG,
     ),
 ];

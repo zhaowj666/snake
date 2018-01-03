@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="input-group col-sm-3">
                                     <div id="sm">
-                                        <img src="{$article['thumbnail']}" width="40px" height="40px"/>
+                                        <img src="__UPLOAD__{$article['thumbnail']}" width="40px" height="40px"/>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +166,7 @@
                 ,done: function(res){
                     //上传完毕回调
                     $("#thumbnail").val(res.data.src);
-                    $("#sm").html('<img src="' + res.data.src + '" style="width:40px;height: 40px;"/>');
+                    $("#sm").html('<img src="__UPLOAD__' + res.data.src + '" style="width:40px;height: 40px;"/>');
                 }
                 ,error: function(){
                     //请求异常回调
