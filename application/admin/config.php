@@ -19,6 +19,7 @@ return [
         '__MUSIC__' => '/static/music',
         '__QINIU__' => '/extend/qiniu',
         '__QINIU_JS__' => '/static/qiniu_js',
+        '__UPLOAD__' =>'',
     ),
 
     // 管理员状态

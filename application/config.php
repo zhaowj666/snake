@@ -11,7 +11,14 @@
 // $Id$
 
 return [
+    //是否开启路由
     'url_route_on' => true,
+    //域名部署
+    'url_domain_deploy' =>  true,
+    // 域名根，如thinkphp.cn
+    'url_domain_root'        => '',
+    \think\Route::domain('blog.zhaowj.cc','home'),
+
     'trace' => [
         'type' => 'html', // 支持 socket trace file
     ],
@@ -21,10 +28,7 @@ return [
     'log' => [
         'type' => 'test',
     ],
-    'url_domain_deploy' =>  true,
-    'url_domain_rules'=>[
-        'blog.zhaowj.cc'=>'home'
-    ],
+    //应用调试模式
     'app_debug' => true,
 
     // +----------------------------------------------------------------------

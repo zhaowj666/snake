@@ -64,14 +64,14 @@
                                 </div>
                                 <div class="input-group col-sm-3">
                                     <div id="sm">
-                                        {notempty name="info.img_path"}<img class="edit-music-img" src="{$info.img_path}"/>{/notempty}
+                                        {notempty name="info.img_path"}<img class="edit-music-img" src="__UPLOAD__{$info.img_path}"/>{/notempty}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">上传音乐：</label>
-                            <button id="pickfiles">选择文件</button> <a id="music_play" target="_blank" href="{$info.music_path|default=''}">{$info.title|default=''}</a>
+                            <button id="pickfiles">选择文件</button> <a id="music_play" target="_blank" href="http://{$info.music_path|default=''}">{$info.title|default=''}</a>
                             <input type="hidden" id="music_path" name="music_path" value="{$info.music_path|default=''}"/>
                         </div>
                         <div class="form-group">
