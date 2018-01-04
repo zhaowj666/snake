@@ -24,7 +24,7 @@
                 <article class="blog-post">
                     <header>
                         <div class="lead-image">
-                            <img src="{$info.thumbnail}" alt="" class="img-responsive">
+                            <img src="__UPLOAD__{$info.thumbnail}" alt="" class="img-responsive">
 
                         </div>
                     </header>
@@ -39,7 +39,20 @@
                         <p class="kwd-p">关键字：{volist name='info.kwd' id='kwd_v'}<font class="kwd-font">{$kwd_v}</font>{/volist}</p>
                         <p class="tag-p"><font style="float: left">标签：</font>{volist name='info.art_tags' id='art_tag'}<a class="tag-sty" href="{:url('Article/index',['tag'=>$art_tag['id']])}">{$art_tag.title}</a>{/volist}</p>
                     </div>
-                    <!--PC和WAP自适应版-->
+                    <!-- 一键分享 -->
+                    <!-- JiaThis Button BEGIN -->
+                    <div class="jiathis_style_32x32">
+                        <a class="jiathis_button_qzone"></a>
+                        <a class="jiathis_button_tsina"></a>
+                        <a class="jiathis_button_tqq"></a>
+                        <a class="jiathis_button_weixin"></a>
+                        <a class="jiathis_button_renren"></a>
+                        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                        <a class="jiathis_counter_style"></a>
+                    </div>
+                    <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+                    <!-- JiaThis Button END -->
+                    <!-- 畅言   PC和WAP自适应版-->
                     <div id="SOHUCS" sid="{$info.id}" ></div>
                     <script type="text/javascript">
                         (function(){
