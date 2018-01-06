@@ -42,7 +42,7 @@ class Article extends Base
         $info = $article->getOne($id);
         //热门文章
         $where['status']    = 1;
-        $hotArticles = $article->getList($where,10,'id,title,keywords');
+        $hotArticles = $article->getList($where,10,'id,title,keywords','browse desc,id desc');
         //标签
         $tag = new TagModel();
         $tagList = $tag->getList();
