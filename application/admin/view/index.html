@@ -247,10 +247,10 @@
             musicChanged: function (ret) {
                 var data = ret.data;
                 var index = ret.index;
-                var imageUrl = data[index].img_url;
+                var imageUrl = '__UPLOAD__'+data[index].img_url;
 
                 var music_bg = document.getElementById('music-bg');
-//                music_bg.style.background = 'url(' + imageUrl + ')no-repeat';
+                music_bg.style.background = 'url(' + imageUrl + ')no-repeat';
                 music_bg.style.backgroundSize = 'cover';
                 music_bg.style.backgroundPosition = 'center 30%';
                 $('.music-div').css('transform',"translate(-1%, -50%)");

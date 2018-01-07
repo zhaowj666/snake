@@ -5,7 +5,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: #444;
   background-color: #fff;
-  padding: 50px 100px;
+  padding: 5% 5%;
   background-color: #ddd; 
   background: url(../img/bgc.jpg) no-repeat;
   background-size: cover;
@@ -66,8 +66,8 @@ Font Awesome Icons
 }
 
 .masthead {
-  padding-top: 55px;
-  padding-bottom: 55px;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 .masthead #logo {

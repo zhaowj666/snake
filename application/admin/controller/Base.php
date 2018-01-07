@@ -41,8 +41,9 @@ class Base extends Controller
         //音乐数据
         $music = new MusicModel();
         $music_list = $music->getList(['status'=>1],'title name,singer,music_path url,img_path img_url');
-        foreach($music_list as $v){
+        foreach($music_list as &$v){
             $v['url'] = 'http://'.$v['url'];
+            $v['img_url'] = BLOG . $v['img_url'];
         }
         $music_list = json_encode($music_list);
         $this->assign([
