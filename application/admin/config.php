@@ -50,4 +50,10 @@ return [
         // 数据库表前缀
         'prefix'      => '',
     ],
+    'cache'  => [
+        'type'   => 'File',         //缓存类型
+        'path'   => CACHE_PATH,     //缓存路径
+        'prefix' => '',             //缓存前缀
+        'expire' => 86400,              //有效期，单位：秒
+    ],
 ];

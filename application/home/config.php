@@ -10,7 +10,6 @@
 // +----------------------------------------------------------------------
 // $Id$
 return [
-
     // 模板参数替换
     'view_replace_str'       => array(
         '__CSS__'       => BLOG.'/static/home/css',
@@ -18,4 +17,10 @@ return [
         '__IMG__'       => BLOG.'/static/home/img',
         '__UPLOAD__'        => BLOG,
     ),
+    'cache'  => [
+        'type'   => 'File',         //缓存类型
+        'path'   => CACHE_PATH,     //缓存路径
+        'prefix' => '',             //缓存前缀
+        'expire' => 86400,              //有效期，单位：秒
+    ],
 ];
