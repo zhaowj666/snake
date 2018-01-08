@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">上传音乐：</label>
                             <button id="pickfiles">选择文件</button> <a id="music_play" target="_blank" href="http://{$info.music_path|default=''}">{$info.title|default=''}</a>
-                            <input type="hidden" id="music_path" name="music_path" value="__UPLOAD__{$info.music_path|default=''}"/>
+                            <input type="hidden" id="music_path" name="music_path" value="{$info.music_path|default=''}"/>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-8">
