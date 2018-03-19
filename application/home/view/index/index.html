@@ -12,7 +12,7 @@
                     <div class="col-md-6 col-sm-6 index-art">
                         <article class=" blog-teaser">
                             <header>
-                                <img src="{$art.thumbnail}" alt="{$art.keywords}">
+                                <img src="__IMG__/timg.gif" data-src="{$art.thumbnail}" alt="{$art.keywords}">
                                 <h3><a href="{:url('Article/detail',['id'=>$art['id']])}">{$art.title}</a></h3>
                                 <!--<span class="meta"></span>-->
                                 <hr>
@@ -32,4 +32,58 @@
 
     </div>
 </div>
+{/block}
+<!-- 图片懒加载 -->
+{block name='js'}
+<script>
+    // 注意: 需要引入jQuery和underscore
+    $(function() {    // 获取window的引用:
+        var $window = $(window);    // 获取包含data-src属性的img，并以jQuery对象存入数组:
+        var lazyImgs = $.map($('img[data-src]').get(), function (i) {
+            return $(i);
+        });    // 定义事件函数:
+        var onScroll = function () {        // 获取页面滚动的高度:
+            var wtop = $window.scrollTop();        // 判断是否还有未加载的img:
+            if (lazyImgs.length > 0) {            // 获取可视区域高度:
+                var wheight = $window.height();            // 存放待删除的索引:
+                var loadedIndex = [];            // 循环处理数组的每个img元素:
+                $.each(lazyImgs, function (index,$i) {
+// 判断是否在可视范围内:
+                    if ($i.offset().top - wtop < wheight) {                    // 设置src属性:
+                        $i.attr('src', $i.attr('data-src'));                    // 添加到待删除数组:
+                        loadedIndex.unshift(index);
+                    }
+                });            // 删除已处理的对象:
+                $.each(loadedIndex, function (index) {
+                    lazyImgs.splice(index, 1);
+                });
+            }
+        };    // 绑定事件:
+        $window.scroll(onScroll);    // 手动触发一次:
+        onScroll();
+    })
+
+
+    var ws = new WebSocket("ws://snake.com:80");
+    //握手监听函数
+    ws.onopen=function(){
+        //状态为1证明握手成功，然后把client自定义的名字发送过去
+        if(so.readyState==1){
+            //握手成功后对服务器发送信息
+            so.send('type=add&ming='+n);
+        }
+    }
+    //错误返回信息函数
+    ws.onerror = function(){
+        console.log("error");
+    };
+    //监听服务器端推送的消息
+    ws.onmessage = function (msg){
+        console.log(msg);
+    }
+    //断开WebSocket连接
+    ws.onclose = function(){
+        ws = false;
+    }
+</script>
 {/block}

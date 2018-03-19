@@ -62,7 +62,6 @@ class Data extends Base
             $vals = "'" . $vals . "'";
             $sqlStr .= "insert into `$table`($keys) values($vals);\r\n";
         }
-
         $filename = config('back_path') . $table . ".sql";
         $fp = fopen($filename, 'w');
         fputs($fp, $sqlStr);

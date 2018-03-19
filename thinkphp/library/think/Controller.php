@@ -63,6 +63,15 @@ class Controller
                 $this->beforeAction($method, $options);
             }
         }
+
+//        dump($request);
+        $address = $request->HTTP_HOST;
+        $port = $request->SERVER_PORT;
+        //建立套接字
+        $this->soc=$this->WebSocket($address,$port);
+        $this->socs=array($this->soc);
+
+
     }
 
     // 初始化
